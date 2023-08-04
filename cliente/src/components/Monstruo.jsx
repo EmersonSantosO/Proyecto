@@ -1,12 +1,11 @@
-import React from 'react';
-
-const Monstruo = ({ monstruo }) => (
-  <div>
-    <h2>{monstruo.nombre}</h2>
-    <p>{monstruo.vida}</p>  
-    <img src={monstruo.imagen} alt={monstruo.nombre} />
-    
-  </div>
-);
-
-export default Monstruo;
+export function Monstruo({monstruo}){
+  return (
+    <div>
+      <h1>{monstruo.nombre}</h1>
+      <h2>{monstruo.familia}</h2>
+      <h3>{monstruo.vida}</h3>
+      <img src={monstruo.imagen} alt={monstruo.nombre} />
+      <hr />
+    </div>
+  )
+}

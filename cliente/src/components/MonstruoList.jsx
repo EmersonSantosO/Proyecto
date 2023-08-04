@@ -1,19 +1,26 @@
-import React from 'react';
-import Monstruo from './Monstruo';
 
-const MonstruoList = ({ monstruos }) => {
-  if (!Array.isArray(monstruos)) {
-    
-    return null;
-  }
+import { useEffect,useState } from "react";
+import { getAllMonstruos } from "../api/monstruosApi";
+import { Monstruo } from "./Monstruo";
 
+export function MonstruoList() {
+  const [monstruos, setMonstruos] = useState([]);
+
+  useEffect(() => {
+    async function loadMonstruos() {
+      const response = await getAllMonstruos();
+      const monstruos = response.data;
+      setMonstruos(monstruos);
+    }
+    loadMonstruos();
+  }, []);
+  
   return (
     <div>
-      {monstruos.map((monstruo) => (
-        <Monstruo key={monstruo.id} monstruo={monstruo} />
-      ))}
+      {monstruos.map((monstruo) => (<Monstruo monstruo={monstruo} key={monstruo.id}/>))}
     </div>
-  );
-};
+      
+  )}
 
-export default MonstruoList;
+
+
